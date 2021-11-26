@@ -1,0 +1,40 @@
+##Pantalla 2: Galería
+###Explica cómo resolver la galería de Ojo de Tigre.
+
+Empezaré por explicar qué, en la maquetación que hice del home.html, la sección de galería fue creada con _CSS Grid_ por dos razónes:  
+
+1. Dado que el sitio en __producción__ de [Ojo de Tigre](https://www.ojodetigremezcal.com/es/) fue construido de este modo.  
+2. Debido a que las imágenes que proporciona la marca son estáticas y poseen siempre las mismas dimensiones y el grid sería igualmente estático. Sería un problema si en lugar de html, tuvisiemos un `loop` de X número de imágenes. 
+-Es decir si cargaramos en el sistema 4 imágenes, adiconalñes a las 4 originales que tenemos ya en el grid. El primer problema que vamos a enfrentar, es que con _CSS Grid_ todas las imágenes deben tener dimensiones similares a las que se tiene la primera fila. 
+-Caso contrario las imagenes se cortan para ajustarse a la caja de acuerdo a las caracteristicas del Grid Original. 
+3. Si lo hiciera de otro modo, es muy probable que no se vea exactamente igual a la imagen que ustedes me proporcionan como ejemplo.    
+
+>[!NOTE]
+>
+>Sin embargo a mi me parece que la forma adecuada de hacer esta galería es con _CSS Masorny_, puesto que eso nos facilitaría muchas cosas:
+  
+
+1. Aprovechar las características dinámicas del CMS para cargar o cambiar imágenes que, no necesariamente, deben siempre poseer las mismas dimensiones.  
+
+2. Mantener en equilibrio los estilos predefinidos por el diseñador para la plantilla del cliente, principalmente cuando éste, decide actualizar las imágenes y éstas puedieran romper con el diseño original. 
+
+El ***estilo masonry*** aprovecha el espacio vacio cuando se combinan cajas con distintas alturas; de esta forma obtenemos un ***bloque de ladrillos***.  
+
+![Imagen de Ejemplo](https://www.espai.es/blog/wp-content/uploads/2017/07/masonry-300x300.png)
+
+Se utiliza especialmente en portfolios y/o galerías de imágenes ya que:  
+
+ -Es un estilo bastante visual y dinámico para presentar elementos de distinto tamaño, sin desaprovechar espacios en nuestra pantalla.  
+ -Se toma en cuenta la altura de un elemento y coloca el siguiente inmediatamente después.   
+
+ Este grid es fácil de usar. Se hizo popular hace tiempo gracias al atractivo diseño de *Tumbrl* y se reafirmó con la estructura de *Pinterest*, principalmente porqué:  
+
+ -No crea barras de desplazamiento al hacer zoom, ya que ninguno de sus elementos tiene un ancho fijo.
+ -Permite mantener el diseño en equilibrio cuando el número de imágenes es muy amplio.
+ -Las nuevas imágenes que se agregan al grid, se acomodan en automático junto a las imágenes anteriores, de tal forma, que siempre búscaran el mejor espació para acomodarse. 
+ -De lo contrario, es poco probable que a la larga se aprovechen todos los espacios verticales que se crean entre las distintas cajas.
+
+Si yo tuviera que hacer el sitio, aprovecharia el Wordpress sobre el que ya esta montado el original.  
+Luego ocuparía GatsbyJs, para volver a dibujar el Front, utilizando la información del CMS, de este modo podría agregar ***Custom Post Type*** o un ***Custom Field*** para implementar un administrador de galería, luego recuperaría las imágenes desde Graphql para renderizar el Array completo de imágenes en el front.  
+EL estilo masorny, me permitiría subir todo tipo de imágenes y la unica condición es que tengan por lo menos 600px de ancho. Incluso podría mantener los efectos del plugin *AOS* que se muestran en el sitio de producción , para generar un efecto de lazy load, mientras cargan las imágenes y así mejorar aún más el rendimiento del sitio.  
+Con un poco de tiempo, se me ocurren maravillas para seguir decorando esa galería y mejorar la experiencia del usuario.
